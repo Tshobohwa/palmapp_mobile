@@ -2,33 +2,11 @@ import { Provider } from "react-redux";
 import store from "./src/redux/store";
 import { useEffect } from "react";
 import MainNavigator from "./src/routes/MainNavigator";
-import {
-  createBlocksTable,
-  createFertilizationsTable,
-  createHavertsTable,
-  createManualWeedingsTable,
-  createOperationsTable,
-  createPlotsTable,
-  createPruningsTable,
-  createReportsTable,
-  createUsersTable,
-  createWeedingsTable,
-  createWorkersTable,
-} from "./src/database/migrations";
+import createDataBaseSchema from "./src/db/migrations/schema";
 
 export default function App() {
   useEffect(() => {
-    createUsersTable();
-    createBlocksTable();
-    createPlotsTable();
-    createOperationsTable();
-    createReportsTable();
-    createWorkersTable();
-    createHavertsTable();
-    createWeedingsTable();
-    createManualWeedingsTable();
-    createPruningsTable();
-    createFertilizationsTable();
+    createDataBaseSchema();
   }, []);
 
   return (

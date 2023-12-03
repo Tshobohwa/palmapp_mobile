@@ -7,7 +7,7 @@ import {
   setCurrentReportOperation,
   setCurrentReportSupervisor,
 } from "../redux/reports/reportsSlice";
-import { db } from "../database/migrations";
+import { db } from "../db/sqlite";
 
 const Home = ({ navigation }) => {
   const { user } = useSelector((store) => store.user);

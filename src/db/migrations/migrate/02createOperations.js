@@ -1,3 +1,5 @@
+import { db } from "../../sqlite";
+
 const createOperations = () => {
   db.transaction((tx) => {
     tx.executeSql(
