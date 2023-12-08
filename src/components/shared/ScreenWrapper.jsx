@@ -1,4 +1,6 @@
+import React from "react";
 import {
+  Platform,
   Keyboard,
   KeyboardAvoidingView,
   SafeAreaView,
@@ -7,19 +9,16 @@ import {
   View,
 } from "react-native";
 
-const ScreenWrapper = () => {
+const ScreenWrapper = ({ children }) => {
   return (
-    <SafeAreaView style={{ flex: 1 }}>
-      <KeyboardAvoidingView
-        style={{ flex: 1 }}
-        behavior={Platform.OS === "ios" ? "padding" : "height"}
-      >
-        <TouchableWithoutFeedback
-          onPress={Keyboard.dismiss}
-          style={{ flex: 1 }}
-        ></TouchableWithoutFeedback>
-      </KeyboardAvoidingView>
-    </SafeAreaView>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : "height"}
+    >
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1 }}>
+        <View style={{ flex: 1 }}>{children}</View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 

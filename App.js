@@ -1,7 +1,7 @@
 import { Provider } from "react-redux";
 import store from "./src/redux/store";
 import createDataBaseSchema from "./src/db/migrations/schema";
-import Loading from "./src/components/shared/Loading";
+import SignUp from "./src/screens/SignUp";
 
 export default function App() {
   createDataBaseSchema();
@@ -9,7 +9,7 @@ export default function App() {
   return (
     <Provider store={store}>
       {/* <MainNavigator /> */}
-      <Loading />
+      <SignUp />
     </Provider>
   );
 }
