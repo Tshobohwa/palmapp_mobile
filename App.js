@@ -1,17 +1,15 @@
 import { Provider } from "react-redux";
 import store from "./src/redux/store";
-import { useEffect } from "react";
-import MainNavigator from "./src/routes/MainNavigator";
 import createDataBaseSchema from "./src/db/migrations/schema";
+import Loading from "./src/components/shared/Loading";
 
 export default function App() {
-  useEffect(() => {
-    createDataBaseSchema();
-  }, []);
+  createDataBaseSchema();
 
   return (
     <Provider store={store}>
-      <MainNavigator />
+      {/* <MainNavigator /> */}
+      <Loading />
     </Provider>
   );
 }
