@@ -9,8 +9,8 @@ const blocksSlice = createSlice({
   name: "blocks",
   initialState,
   reducers: {
-    setBlocks: (_, { payload }) => {
-      return { ...payload };
+    setBlocks: (state, { payload }) => {
+      return { ...state, blocks: payload.blocks };
     },
   },
 });

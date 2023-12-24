@@ -1,3 +1,4 @@
+import { db } from "../db/sqlite";
 export const dropReportsTable = () => {
   db.transaction((tx) =>
     tx.executeSql(

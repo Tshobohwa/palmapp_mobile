@@ -94,6 +94,7 @@ export const saveReport = (report) => {
         console.log("Couldn't save the operation " + error.message);
       }
     );
+    c;
   });
 };
 

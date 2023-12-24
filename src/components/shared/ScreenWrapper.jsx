@@ -16,7 +16,9 @@ const ScreenWrapper = ({ children }) => {
       behavior={Platform.OS === "ios" ? "padding" : "height"}
     >
       <TouchableWithoutFeedback onPress={Keyboard.dismiss} style={{ flex: 1 }}>
-        <View style={{ flex: 1 }}>{children}</View>
+        <View style={{ flex: 1 }} className=" w-full h-full relative">
+          {children}
+        </View>
       </TouchableWithoutFeedback>
     </KeyboardAvoidingView>
   );
