@@ -5,6 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import SignUp from "../screens/SignUp";
 import StartReport from "../screens/StartReport";
 import Report from "../screens/Report";
+import PreviousReports from "../screens/PreviousReports";
 
 const AppStackNavigator = createNativeStackNavigator();
 
@@ -39,6 +40,10 @@ const AppNavigator = () => {
           options={{ headerShadowVisible: false }}
         />
         <AppStackNavigator.Screen name="Start Report" component={StartReport} />
+        <AppStackNavigator.Screen
+          name="Previous Reports"
+          component={PreviousReports}
+        />
       </AppStackNavigator.Navigator>
     </NavigationContainer>
   );

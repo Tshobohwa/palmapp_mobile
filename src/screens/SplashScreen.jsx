@@ -5,6 +5,10 @@ const SplashScreen = ({ navigation }) => {
   gotoStartReport = () => {
     navigation.navigate("Start Report");
   };
+
+  gotoPreviousReports = () => {
+    navigation.navigate("Previous Reports");
+  };
   return (
     <View className=" flex-1 items-center justify-center gap-4">
       <Image
@@ -18,7 +22,10 @@ const SplashScreen = ({ navigation }) => {
       >
         <Text className=" text-white font-bold">START REPORT</Text>
       </TouchableOpacity>
-      <TouchableOpacity className=" w-[80%] h-[60px] flex items-center justify-center rounded-md border-2 border-leaf-300">
+      <TouchableOpacity
+        className=" w-[80%] h-[60px] flex items-center justify-center rounded-md border-2 border-leaf-300"
+        onPress={gotoPreviousReports}
+      >
         <Text className=" text-leaf-300 font-bold">PREVIOUS REPORT</Text>
       </TouchableOpacity>
     </View>
