@@ -2,14 +2,18 @@ import React from "react";
 import { FlatList } from "react-native";
 import items from "./_items";
 import ManualWeedingComponent from "../reportComponents/ManualWeedingComponent";
+import ManualWeederModal from "../../Modals/ManualWeederModal";
 
 const ManualWeedingReport = () => {
   return (
-    <FlatList
-      data={items}
-      renderItem={({ item }) => <ManualWeedingComponent item={item} />}
-      keyExtractor={(item) => item.matricule}
-    />
+    <>
+      <ManualWeederModal />
+      <FlatList
+        data={items}
+        renderItem={({ item }) => <ManualWeedingComponent item={item} />}
+        keyExtractor={(item) => item.matricule}
+      />
+    </>
   );
 };
 

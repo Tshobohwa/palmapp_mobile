@@ -7,6 +7,8 @@ import Report from "./src/screens/Report";
 import Login from "./src/screens/Login";
 import { dropTables, dropuUsersTable } from "./src/database/migrations";
 import SplashScreen from "./src/screens/SplashScreen";
+import CurrentReport from "./src/screens/CurrentReport";
+import HaversterReport from "./src/components/reports/HaversterReport";
 
 export default function App() {
   createDataBaseSchema();
@@ -14,8 +16,10 @@ export default function App() {
     <Provider store={store}>
       {/* <MainNavigator /> */}
       {/* <Report /> */}
-      <StartReport />
+      {/* <StartReport /> */}
       {/* <SignUp /> */}
+      {/* <CurrentReport /> */}
+      <HaversterReport />
       {/* <Login /> */}
       {/* <StartReport /> */}
     </Provider>
