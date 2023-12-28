@@ -1,9 +1,9 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 const SharedListItem = ({ item }) => {
   return (
-    <View className=" w-[94%] border border-[#d3d3d3] bg-white rounded-md my-2 p-2 mx-[3%]">
+    <TouchableOpacity className=" w-[94%] border border-[#d3d3d3] bg-white rounded-md my-2 p-2 mx-[3%]">
       <View className=" w-full">
         <Text className="font-bold">{`${item.first_name} ${item.last_name}`}</Text>
         <Text className="font-bold text-leaf-300">{item.matricule}</Text>
@@ -17,7 +17,7 @@ const SharedListItem = ({ item }) => {
           <Text>man day: {/* man day goes here */}</Text>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

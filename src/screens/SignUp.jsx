@@ -4,7 +4,10 @@ import { Image, Text, View } from "react-native";
 import AuthenticationTextInput from "../components/Authentication/AuthenticationTextInputs";
 import AuthenticationSubmitButton from "../components/Authentication/AuthenticationSubmitButton";
 import AuthenticationRedirectButton from "../components/Authentication/AuthenticationRedirectButton";
-const SignUp = () => {
+const SignUp = ({ navigation }) => {
+  const gotoLogin = () => {
+    navigation.navigate("home");
+  };
   return (
     <ScreenWrapper>
       <View className="flex-1 items-center pt-12 px-4 pb-5 justify-between">
@@ -25,7 +28,9 @@ const SignUp = () => {
           <AuthenticationSubmitButton text={"sign up"} />
           <View className=" flex-row mt-4">
             <Text>Already registerd?</Text>
-            <AuthenticationRedirectButton>Log in</AuthenticationRedirectButton>
+            <AuthenticationRedirectButton onPress={gotoLogin}>
+              Log in
+            </AuthenticationRedirectButton>
           </View>
         </View>
       </View>

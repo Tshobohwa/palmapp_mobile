@@ -13,7 +13,7 @@ import SelectList from "../components/shared/SelectList";
 import blocks from "../data/blocks";
 import { plots } from "../data/plots";
 
-const StartReport = () => {
+const StartReport = ({ navigation }) => {
   const [showSelectModal, setShowSelectModal] = useState(false);
   const [items, setItems] = useState([]);
   const [currentBlock, setCurrentBlock] = useState({});
@@ -41,6 +41,14 @@ const StartReport = () => {
     setListName("plot");
     setItems(filteredPlots);
     setShowSelectModal(true);
+  };
+
+  const discardHandler = () => {
+    navigation.navigate("home");
+  };
+
+  const startHandler = () => {
+    navigation.navigate("New Report");
   };
 
   useEffect(() => {
@@ -126,10 +134,16 @@ const StartReport = () => {
               </TouchableOpacity>
             </View>
             <View className="w-full flex-row justify-between">
-              <TouchableOpacity className=" w-[49%] h-[50px] items-center justify-center rounded-md border border-leaf-300">
+              <TouchableOpacity
+                className=" w-[49%] h-[50px] items-center justify-center rounded-md border border-leaf-300"
+                onPress={discardHandler}
+              >
                 <Text className=" font-bold">Discard</Text>
               </TouchableOpacity>
-              <TouchableOpacity className=" w-[49%] h-[50px] items-center justify-center rounded-md bg-leaf-300">
+              <TouchableOpacity
+                className=" w-[49%] h-[50px] items-center justify-center rounded-md bg-leaf-300"
+                onPress={startHandler}
+              >
                 <Text className=" font-bold text-white">Start</Text>
               </TouchableOpacity>
             </View>

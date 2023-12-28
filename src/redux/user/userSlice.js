@@ -14,6 +14,7 @@ export const logIn = createAsyncThunk("user/logIng", async (credentials) => {
 
 const initialState = {
   isLoading: false,
+  authenticated: true,
   user: {},
   error: "",
 };
@@ -27,7 +28,7 @@ const userSlice = createSlice({
       return { ...state, isLoading: true };
     });
     builder.addCase(logIn.fulfilled, (state, { payload }) => {
-      return { ...state, user: payload, isLoading: false };
+      return { ...state, user: payload, isLoading: false, authenticated: true };
     });
     builder.addCase(logIn.rejected, (state, { payload }) => {
       return { ...state, isLoading: false, error: payload };
