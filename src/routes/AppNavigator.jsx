@@ -6,6 +6,7 @@ import SignUp from "../screens/SignUp";
 import StartReport from "../screens/StartReport";
 import Report from "../screens/Report";
 import PreviousReports from "../screens/PreviousReports";
+import HaversterReport from "../components/reports/HaversterReport";
 
 const AppStackNavigator = createNativeStackNavigator();
 
@@ -38,6 +39,10 @@ const AppNavigator = () => {
           name="New Report"
           component={Report}
           options={{ headerShadowVisible: false }}
+        />
+        <AppStackNavigator.Screen
+          name="Haverster Form"
+          component={HaversterReport}
         />
         <AppStackNavigator.Screen name="Start Report" component={StartReport} />
         <AppStackNavigator.Screen

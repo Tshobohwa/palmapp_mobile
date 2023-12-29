@@ -12,19 +12,37 @@ import { useState } from "react";
 const Report = ({ navigation }) => {
   const { operation_id } = useSelector((store) => store.user.user);
   const { workers } = useSelector((store) => store.workers);
+  const [filteredWorkers, setfilteredWorkers] = useState(workers);
 
-  const [items, setItems] = useState(workers);
+  // const onSearchHandler = (text) => {
+  //   console.log(text);
+  //   setfilteredWorkers(
+  //     workers.map(
+  //       (worker) =>
+  //         `${worker.first_name} ${worker.last_name}`.includes(text) ||
+  //         `${worker.matricule}`.includes(text)
+  //     )
+  //   );
+  // };
+
   return (
     <ScreenWrapper>
       <View className=" flex-1  bg-leaft-light relative pt-[60px]">
-        <SearchBar />
+        <SearchBar
+          placeholder={"search worker"}
+          // onSearchHandler={onSearchHandler}
+        />
         {(operation_id === 1 && (
-          <HaverstingReport items={items} navigation={navigation} />
+          <HaverstingReport workers={filteredWorkers} navigation={navigation} />
         )) ||
-          (operation_id === 2 && <WeedingReport items={items} />) ||
-          (operation_id === 3 && <ManualWeedingReport items={items} />) ||
-          (operation_id === 4 && <FertilizationReport items={items} />) ||
-          (operation_id === 5 && <PruningReport items={items} />)}
+          (operation_id === 2 && <WeedingReport workers={filteredWorkers} />) ||
+          (operation_id === 3 && (
+            <ManualWeedingReport workers={filteredWorkers} />
+          )) ||
+          (operation_id === 4 && (
+            <FertilizationReport workers={filteredWorkers} />
+          )) ||
+          (operation_id === 5 && <PruningReport workers={filteredWorkers} />)}
       </View>
     </ScreenWrapper>
   );

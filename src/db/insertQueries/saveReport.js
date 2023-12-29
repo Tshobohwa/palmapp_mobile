@@ -1,6 +1,6 @@
 import { db } from "../sqlite";
 
-const saveReport = (report, setCurrentReport, gotoReportPage) => {
+const saveReport = (report, gotoReportPage, setReport) => {
   const newReport = [
     report.report_id,
     report.date,
@@ -19,7 +19,7 @@ const saveReport = (report, setCurrentReport, gotoReportPage) => {
       newReport,
       (result) => {
         console.log(`report ${report.report_id} saved succesfully`);
-        setCurrentReport(report);
+        setReport(report);
         gotoReportPage();
       },
       (error) => {

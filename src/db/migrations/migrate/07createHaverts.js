@@ -8,7 +8,7 @@ const createHaverts = () => {
       ( report_id TEXT REFERENCES reports(report_id),
         worker_matricule INTEGER REFERENCES workers(matricule),
         ripe_bunches INTEGER,
-        green_bunches INTEGER,
+        unripe_bunches INTEGER,
         loading_zone INTEGER,
             UNIQUE (report_id, worker_matricule, loading_zone))`,
       [],

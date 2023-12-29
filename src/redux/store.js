@@ -4,6 +4,7 @@ import workersReducer from "./workers/workersSlice";
 import blocksReducer from "./blocks/blocksSlice";
 import plotsReducer from "./plots/plotsSlice";
 import reportsReducer from "./reports/reportsSlice";
+import haverstsReducer from "./haversts/haverstsSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     blocks: blocksReducer,
     plots: plotsReducer,
     reports: reportsReducer,
+    haversts: haverstsReducer,
   },
 });
 

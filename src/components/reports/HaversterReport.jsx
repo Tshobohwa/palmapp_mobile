@@ -20,7 +20,7 @@ const HaversterReport = () => {
     { loading_zone: 14, ripe_bunches: 0, green_bunches: 0 },
   ];
   return (
-    <ScrollView className=" flex-1 mt-12 bg-leaft-light">
+    <ScrollView className=" flex-1 pt-6 bg-leaft-light">
       <View className="border-2  border-[#d3d3d3] ml-[3%] mr-[4%] px-[2%] rounded-md bg-white">
         <View className=" w-full flex-row justify-between items-center">
           <View className="my-4">
