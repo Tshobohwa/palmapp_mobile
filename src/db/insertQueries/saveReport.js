@@ -18,7 +18,7 @@ const saveReport = (report, setCurrentReport, gotoReportPage) => {
       `INSERT INTO reports (report_id, date, supervisor_id, block_id, plot_id, operation_id, man_day, penality, sent) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       newReport,
       (result) => {
-        console.log(`report ${report.date} saved succesfully`);
+        console.log(`report ${report.report_id} saved succesfully`);
         setCurrentReport(report);
         gotoReportPage();
       },
