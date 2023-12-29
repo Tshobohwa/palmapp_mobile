@@ -12,14 +12,22 @@ import { useEffect, useState } from "react";
 import SelectList from "../components/shared/SelectList";
 import blocks from "../data/blocks";
 import { plots } from "../data/plots";
+import formatDateToEnglish from "../helpers/formatDateToEnglish";
+import { useDispatch, useSelector } from "react-redux";
+import saveReport from "../db/insertQueries/saveReport";
+import { setCurrentReport } from "../redux/reports/reportsSlice";
 
 const StartReport = ({ navigation }) => {
+  const dispatch = useDispatch();
+  const { user } = useSelector((store) => store.user);
   const [showSelectModal, setShowSelectModal] = useState(false);
   const [items, setItems] = useState([]);
   const [currentBlock, setCurrentBlock] = useState({});
   const [listName, setListName] = useState("");
   const [currentPlot, setCurrentPlot] = useState({});
   const [filteredPlots, setFilteredPlots] = useState([]);
+  const [manDay, setManDay] = useState();
+  const [penality, setPenality] = useState();
   const currentDate = new Date();
   const date = currentDate.toISOString().split("T")[0];
 
@@ -29,6 +37,16 @@ const StartReport = ({ navigation }) => {
 
   const closeModal = () => {
     setShowSelectModal(false);
+  };
+
+  const manDayChangeHandler = (text) => {
+    setManDay(+text);
+    console.log(manDay);
+  };
+
+  const penalityChangeHandler = (text) => {
+    setPenality(+text);
+    console.log(penality);
   };
 
   const OpenBlockPicker = () => {
@@ -48,7 +66,24 @@ const StartReport = ({ navigation }) => {
   };
 
   const startHandler = () => {
-    navigation.navigate("New Report");
+    const gotoReportPage = () => {
+      navigation.navigate("New Report");
+    };
+
+    const setReport = (report) => {
+      dispatch(setCurrentReport(report));
+    };
+    const newReport = {
+      report_id: `${user.id}${Date.now()}`,
+      supervisor_id: user.id,
+      operation_id: user.operation_id,
+      date: date,
+      block_id: currentBlock.id,
+      plot_id: currentPlot.id,
+      man_day: manDay,
+      penality: penality,
+    };
+    saveReport(newReport, gotoReportPage, setReport);
   };
 
   useEffect(() => {
@@ -90,7 +125,7 @@ const StartReport = ({ navigation }) => {
                 New report
               </Text>
               <View className=" w-[50%] items-end justify-end">
-                <Text>{date}</Text>
+                <Text>{formatDateToEnglish(date)}</Text>
               </View>
             </View>
             <View className="flex-row items-center my-2">
@@ -98,6 +133,8 @@ const StartReport = ({ navigation }) => {
               <TextInput
                 className=" placeholder:text-black bg-leaf-50 h-[50px] rounded-lg w-[75%] text-center"
                 placeholder="00"
+                keyboardType="numeric"
+                onChangeText={manDayChangeHandler}
               />
             </View>
             <View className="flex-row items-center my-2">
@@ -105,6 +142,8 @@ const StartReport = ({ navigation }) => {
               <TextInput
                 className=" placeholder:text-black bg-leaf-50 h-[50px] rounded-lg w-[75%] text-center"
                 placeholder="00"
+                keyboardType="numeric"
+                onChangeText={penalityChangeHandler}
               />
             </View>
             <View className="flex-row items-center my-2">

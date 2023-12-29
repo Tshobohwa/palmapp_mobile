@@ -8,7 +8,7 @@ import reportsReducer from "./reports/reportsSlice";
 const store = configureStore({
   reducer: {
     user: userReducer,
-    Workers: workersReducer,
+    workers: workersReducer,
     blocks: blocksReducer,
     plots: plotsReducer,
     reports: reportsReducer,

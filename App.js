@@ -5,6 +5,7 @@ import AppNavigator from "./src/routes/AppNavigator";
 
 export default function App() {
   createDataBaseSchema();
+
   return (
     <Provider store={store}>
       <AppNavigator />

@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import { BASE_URL } from "../api/api";
+import users from "../../data/users";
 
 export const logIn = createAsyncThunk("user/logIng", async (credentials) => {
   try {
@@ -15,7 +16,7 @@ export const logIn = createAsyncThunk("user/logIng", async (credentials) => {
 const initialState = {
   isLoading: false,
   authenticated: true,
-  user: {},
+  user: users[0],
   error: "",
 };
 

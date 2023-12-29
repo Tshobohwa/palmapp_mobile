@@ -5,7 +5,7 @@ const createHaverts = () => {
     tx.executeSql(
       `CREATE TABLE IF NOT EXISTS
         haversts
-      ( report_id INTEGER REFERENCES reports(id),
+      ( report_id TEXT REFERENCES reports(report_id),
         worker_matricule INTEGER REFERENCES workers(matricule),
         ripe_bunches INTEGER,
         green_bunches INTEGER,
