@@ -1,33 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { View, Text, TouchableOpacity } from "react-native";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentHaverster } from "../../redux/haversts/haverstsSlice";
 
 const HaverstingListItem = ({ item, navigation }) => {
+  const dispatch = useDispatch();
+  const { haversts } = useSelector((store) => store.haversts);
   const { currentReport } = useSelector((store) => store.reports);
-  console.log(currentReport);
   const [ripesBunches, setRipeBunches] = useState(0);
   const [greenBunches, setGreenBunches] = useState(0);
   const [manDay, setManDay] = useState(0);
   const [penality, setPenality] = useState(0);
+  const [workerHaversts, setWorkerHaversts] = useState([]);
 
   const onPressHandler = () => {
+    dispatch(setCurrentHaverster(item));
     navigation.navigate("Haverster Form");
   };
 
   useEffect(() => {
+    setWorkerHaversts(
+      haversts.filter((haverst) => haverst.worker_matricule === item.matricule)
+    );
+  }, [haversts]);
+
+  useEffect(() => {
     setRipeBunches(
-      item.haversts.reduce(
+      workerHaversts.reduce(
         (ripeBunches, haversts) => ripeBunches + haversts.ripe_bunches,
         0
       )
     );
     setGreenBunches(
-      item.haversts.reduce(
+      workerHaversts.reduce(
         (greenBunches, haversts) => greenBunches + haversts.unripe_bunches,
         0
       )
     );
-  }, [item.haversts]);
+    console.log(workerHaversts);
+  }, [workerHaversts]);
 
   useEffect(() => {
     setManDay((ripesBunches - greenBunches) / currentReport.man_day);

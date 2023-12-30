@@ -1,7 +1,9 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
+import { useDispatch } from "react-redux";
 
 const SplashScreen = ({ navigation }) => {
+  const dispatch = useDispatch();
   gotoStartReport = () => {
     navigation.navigate("Start Report");
   };
@@ -9,6 +11,8 @@ const SplashScreen = ({ navigation }) => {
   gotoPreviousReports = () => {
     navigation.navigate("Previous Reports");
   };
+
+  const queryPlotsAndBlocks = () => {};
   return (
     <View className=" flex-1 items-center justify-center gap-4">
       <Image

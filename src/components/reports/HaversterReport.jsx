@@ -1,31 +1,56 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Image, ScrollView, Text, View } from "react-native";
 import HaversterTableRow from "../ListItems/HaversterTableRow";
+import { useSelector } from "react-redux";
 
 const HaversterReport = () => {
-  const haversts = [
-    { loading_zone: 1, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 2, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 3, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 4, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 5, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 6, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 7, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 8, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 9, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 10, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 11, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 12, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 13, ripe_bunches: 0, green_bunches: 0 },
-    { loading_zone: 14, ripe_bunches: 0, green_bunches: 0 },
-  ];
+  const { currentReport } = useSelector((store) => store.reports);
+  const { haversts, currentHaverster } = useSelector((store) => store.haversts);
+  const [ripesBunches, setRipeBunches] = useState(0);
+  const [greenBunches, setGreenBunches] = useState(0);
+  const [manDay, setManDay] = useState(0);
+  const [penality, setPenality] = useState(0);
+  const [currentHaversts, setCurrentHaversts] = useState([]);
+
+  useEffect(() => {
+    setCurrentHaversts(
+      haversts.filter(
+        (haverst) => haverst.worker_matricule === currentHaverster.matricule
+      )
+    );
+  }, [haversts, currentHaverster]);
+
+  useEffect(() => {
+    setRipeBunches(
+      currentHaversts.reduce(
+        (ripeBunches, haverst) => ripeBunches + haverst.ripe_bunches,
+        0
+      )
+    );
+    setGreenBunches(
+      currentHaversts.reduce(
+        (greenBunches, haversts) => greenBunches + haversts.unripe_bunches,
+        0
+      )
+    );
+  }, [currentHaversts]);
+
+  useEffect(() => {
+    setManDay((ripesBunches - greenBunches) / currentReport.man_day);
+    setPenality(greenBunches * currentReport.penality);
+  }, [ripesBunches, greenBunches]);
+
   return (
     <ScrollView className=" flex-1 pt-6 bg-leaft-light">
       <View className="border-2  border-[#d3d3d3] ml-[3%] mr-[4%] px-[2%] rounded-md bg-white">
         <View className=" w-full flex-row justify-between items-center">
           <View className="my-4">
-            <Text className=" font-bold">worker 1 Haverstert</Text>
-            <Text className=" font-bold text-leaf-300">202110272</Text>
+            <Text className=" font-bold">
+              {currentHaverster?.first_name + " " + currentHaverster?.last_name}
+            </Text>
+            <Text className=" font-bold text-leaf-300">
+              {currentHaverster?.matricule}
+            </Text>
           </View>
           <Image
             source={require("../../assets/images/palmapp-logo.png")}
@@ -34,12 +59,12 @@ const HaversterReport = () => {
         </View>
         <View className="w-full px-2 flex-row justify-between border-t border-[#d3d3d3]">
           <View className="my-4">
-            <Text className=" font-bold">ripe bunches:</Text>
-            <Text className=" font-bold">green bunches:</Text>
+            <Text className=" font-bold">ripe bunches: {ripesBunches} </Text>
+            <Text className=" font-bold">green bunches: {greenBunches} </Text>
           </View>
-          <View className=" my-4">
-            <Text className=" font-bold">man-day:</Text>
-            <Text className=" font-bold">penality:</Text>
+          <View className=" my-4 items-end">
+            <Text className=" font-bold">man-day: {manDay} </Text>
+            <Text className=" font-bold">penality: {penality} </Text>
           </View>
         </View>
       </View>
@@ -55,7 +80,7 @@ const HaversterReport = () => {
             <Text className=" font-bold">G B</Text>
           </View>
         </View>
-        {haversts.map((haverst, i) => (
+        {currentHaversts.map((haverst, i) => (
           <HaversterTableRow
             haverst={haverst}
             i={i}

@@ -5,28 +5,37 @@ import { useDispatch, useSelector } from "react-redux";
 import selectHaversts from "../../db/selectQueries/selectHaversts";
 import { useEffect, useState } from "react";
 import { setHaversts } from "../../redux/haversts/haverstsSlice";
+import saveHaverst from "../../db/insertQueries/saveHaverst";
 
 const HaverstingReport = ({ workers, navigation }) => {
   const dispatch = useDispatch();
   const { report_id } = useSelector((store) => store.reports.currentReport);
   const { haversts } = useSelector((store) => store.haversts);
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useState(workers);
 
-  const updateHaversts = (haversts) => {
+  const initializeReport = () => {
+    const haversts = [];
+    workers.forEach((worker) => {
+      for (let i = 1; i <= 14; i++) {
+        haversts.push({
+          report_id: report_id,
+          worker_matricule: worker.matricule,
+          ripe_bunches: 5,
+          unripe_bunches: 9,
+          loading_zone: i,
+        });
+      }
+    });
     dispatch(setHaversts(haversts));
   };
 
-  const filterHaversts = () => {
-    const items = [];
-    workers.forEach((worker) => {
-      const haversts = [];
-      haversts.forEach((haverst) => {
-        if (haverst.worker_matricule === worker.matricule)
-          haversts.push(haverst);
-      });
-      items.push({ ...worker, haversts });
-    });
-    setItems(items);
+  useEffect(() => {
+    if (!workers[0] || haversts[0]) return;
+    initializeReport();
+  }, [workers, haversts]);
+
+  const updateHaversts = (haversts) => {
+    dispatch(setHaversts(haversts));
   };
 
   useEffect(() => {
@@ -34,8 +43,8 @@ const HaverstingReport = ({ workers, navigation }) => {
   }, [report_id]);
 
   useEffect(() => {
-    filterHaversts();
-  }, [haversts]);
+    setItems(workers);
+  }, [workers]);
 
   return (
     <>

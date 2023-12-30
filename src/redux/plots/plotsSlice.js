@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  blocks: [],
+  plots: [],
   error: null,
 };
 
@@ -9,8 +9,8 @@ const plotsSlice = createSlice({
   name: "plots",
   initialState,
   reducers: {
-    setPlots: (_, { payload }) => {
-      return { ...payload };
+    setPlots: (state, { payload }) => {
+      return { ...state, plots: payload };
     },
   },
 });

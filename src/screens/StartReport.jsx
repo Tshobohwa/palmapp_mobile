@@ -10,16 +10,20 @@ import {
 import ScreenWrapper from "../components/shared/ScreenWrapper";
 import { useEffect, useState } from "react";
 import SelectList from "../components/shared/SelectList";
-import blocks from "../data/blocks";
-import { plots } from "../data/plots";
 import formatDateToEnglish from "../helpers/formatDateToEnglish";
 import { useDispatch, useSelector } from "react-redux";
 import saveReport from "../db/insertQueries/saveReport";
 import { setCurrentReport } from "../redux/reports/reportsSlice";
+import selectBlocks from "../db/selectQueries/selectBlocks";
+import { setBlocks } from "../redux/blocks/blocksSlice";
+import { setPlots } from "../redux/plots/plotsSlice";
+import selectPlots from "../db/selectQueries/selectPlots";
 
 const StartReport = ({ navigation }) => {
   const dispatch = useDispatch();
   const { user } = useSelector((store) => store.user);
+  const { blocks } = useSelector((store) => store.blocks);
+  const { plots } = useSelector((store) => store.plots);
   const [showSelectModal, setShowSelectModal] = useState(false);
   const [items, setItems] = useState([]);
   const [currentBlock, setCurrentBlock] = useState({});
@@ -32,7 +36,7 @@ const StartReport = ({ navigation }) => {
   const date = currentDate.toISOString().split("T")[0];
 
   const filterPlots = (blockId) => {
-    setFilteredPlots(plots.filter((plot) => plot.blockId === blockId));
+    setFilteredPlots(plots.filter((plot) => plot.block_id === blockId));
   };
 
   const closeModal = () => {
@@ -87,13 +91,24 @@ const StartReport = ({ navigation }) => {
   };
 
   useEffect(() => {
-    setCurrentBlock(blocks[0]);
-    filterPlots(currentBlock.id);
-    setCurrentPlot(filteredPlots[0]);
-  }, [blocks]);
+    const setCurrentBlocks = (blocks) => {
+      dispatch(setBlocks(blocks));
+    };
+    const setCurrentPlots = (plots) => {
+      dispatch(setPlots(plots));
+    };
+    selectBlocks(setCurrentBlocks);
+    selectPlots(setCurrentPlots);
+  }, []);
 
   useEffect(() => {
-    filterPlots(currentBlock.id);
+    setCurrentBlock(blocks[0]);
+    filterPlots(currentBlock?.id);
+    setCurrentPlot(filteredPlots[0]);
+  }, [plots[0], blocks[0]]);
+
+  useEffect(() => {
+    filterPlots(currentBlock?.id);
   }, [currentBlock]);
 
   useEffect(() => {
@@ -101,7 +116,7 @@ const StartReport = ({ navigation }) => {
   }, [filteredPlots]);
 
   useEffect(() => {
-    filterPlots(currentBlock.id);
+    filterPlots(currentBlock?.id);
   }, [currentBlock]);
 
   return (

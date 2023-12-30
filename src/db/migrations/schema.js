@@ -29,8 +29,6 @@ const createDataBaseSchema = () => {
   createFertilizations();
 
   createPrunings();
-
-  createPrunings();
 };
 
 export default createDataBaseSchema;
