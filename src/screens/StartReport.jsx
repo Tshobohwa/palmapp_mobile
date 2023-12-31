@@ -45,12 +45,10 @@ const StartReport = ({ navigation }) => {
 
   const manDayChangeHandler = (text) => {
     setManDay(+text);
-    console.log(manDay);
   };
 
   const penalityChangeHandler = (text) => {
     setPenality(+text);
-    console.log(penality);
   };
 
   const OpenBlockPicker = () => {
@@ -78,7 +76,7 @@ const StartReport = ({ navigation }) => {
       dispatch(setCurrentReport(report));
     };
     const newReport = {
-      report_id: `${user.id}${Date.now()}`,
+      report_id: +`${user.id}${Date.now()}`,
       supervisor_id: user.id,
       operation_id: user.operation_id,
       date: date,
@@ -89,17 +87,6 @@ const StartReport = ({ navigation }) => {
     };
     saveReport(newReport, gotoReportPage, setReport);
   };
-
-  useEffect(() => {
-    const setCurrentBlocks = (blocks) => {
-      dispatch(setBlocks(blocks));
-    };
-    const setCurrentPlots = (plots) => {
-      dispatch(setPlots(plots));
-    };
-    selectBlocks(setCurrentBlocks);
-    selectPlots(setCurrentPlots);
-  }, []);
 
   useEffect(() => {
     setCurrentBlock(blocks[0]);

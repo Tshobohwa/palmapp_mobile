@@ -9,7 +9,7 @@ const selectBlocks = (setBlocks) => {
         setBlocks(rows._array);
       },
       (error) => {
-        console.log("Couldn't select blocks", error);
+        console.log("Couldn't select blocks");
       }
     );
   });

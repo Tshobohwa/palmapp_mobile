@@ -56,5 +56,17 @@ export const dropTables = () => {
       () => console.log("Plots table dropped successfully"),
       () => console.log("Couldn't drop Plots table")
     );
+    tx.executeSql(
+      "DROP TABLE IF EXISTS operations",
+      [],
+      () => console.log("operations table dropped successfully"),
+      () => console.log("Couldn't drop operations table")
+    );
+    tx.executeSql(
+      "DROP TABLE IF EXISTS workers",
+      [],
+      () => console.log("workers table dropped successfully"),
+      () => console.log("Couldn't drop workers table unfortunatly")
+    );
   });
 };

@@ -4,7 +4,7 @@ const createReports = () => {
   db.transaction((tx) => {
     tx.executeSql(
       `CREATE TABLE IF NOT EXISTS reports(
-        report_id TEXT PRIMARY KEY,
+        report_id INTEGER PRIMARY KEY,
         date DATE,
         man_day REAL,
         penality REAL,

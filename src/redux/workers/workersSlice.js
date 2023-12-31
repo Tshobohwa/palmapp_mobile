@@ -1,5 +1,4 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import workers from "../../data/workers";
 
 export const getWorkers = createAsyncThunk("cart/getWorkers", async () => {
   try {
@@ -13,14 +12,18 @@ export const getWorkers = createAsyncThunk("cart/getWorkers", async () => {
 });
 
 const initialState = {
-  workers: workers,
+  workers: [],
   isLoading: false,
 };
 
 const workersSlice = createSlice({
   name: "workers",
   initialState,
-  reducers: {},
+  reducers: {
+    setWorkers: (state, { payload }) => {
+      return { ...state, workers: payload };
+    },
+  },
   extraReducers: (builer) => {
     builer
       .addCase(getWorkers.pending, (state) => {
@@ -46,5 +49,7 @@ const workersSlice = createSlice({
       });
   },
 });
+
+export const { setWorkers } = workersSlice.actions;
 
 export default workersSlice.reducer;

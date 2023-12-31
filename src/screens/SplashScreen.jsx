@@ -1,6 +1,12 @@
 import React from "react";
 import { Image, Text, TouchableOpacity, View } from "react-native";
 import { useDispatch } from "react-redux";
+import { setBlocks } from "../redux/blocks/blocksSlice";
+import { setPlots } from "../redux/plots/plotsSlice";
+import selectBlocks from "../db/selectQueries/selectBlocks";
+import selectPlots from "../db/selectQueries/selectPlots";
+import { setWorkers } from "../redux/workers/workersSlice";
+import selectWorkers from "../db/selectQueries/selectWorkers";
 
 const SplashScreen = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -12,7 +18,24 @@ const SplashScreen = ({ navigation }) => {
     navigation.navigate("Previous Reports");
   };
 
-  const queryPlotsAndBlocks = () => {};
+  const queryPlotsAndBlocks = () => {
+    const setCurrentBlocks = (blocks) => {
+      dispatch(setBlocks(blocks));
+    };
+    const setCurrentPlots = (plots) => {
+      dispatch(setPlots(plots));
+    };
+    selectBlocks(setCurrentBlocks);
+    selectPlots(setCurrentPlots);
+  };
+  const queryWorkers = () => {
+    const setCurrentWorkers = (workers) => {
+      dispatch(setWorkers(workers));
+    };
+    selectWorkers(setCurrentWorkers);
+  };
+  queryPlotsAndBlocks();
+  queryWorkers();
   return (
     <View className=" flex-1 items-center justify-center gap-4">
       <Image
