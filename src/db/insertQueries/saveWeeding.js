@@ -1,6 +1,6 @@
 import { db } from "../sqlite";
 
-const saveWeeding = (weeding, updateWeedings) => {
+const saveWeeding = ({ weeding, updateWeedings }) => {
   const values = [
     weeding.report_id,
     weeding.worker_matricule,

@@ -3,8 +3,8 @@ import { db } from "../../sqlite";
 const createPrunings = () => {
   db.transaction((tx) => {
     tx.executeSql(
-      `CREATE TABLE IF NOT EXISTS prunings ( report_id INTEGER REFERENCES reports(report_id),
-        worker_matricule INTEGER REFERENCES workers(matricule),
+      `CREATE TABLE IF NOT EXISTS prunings ( report_id VARCHAR,
+        worker_matricule INTEGER,
         weight FLOAT,
         UNIQUE (report_id, worker_matricule)
         )`,

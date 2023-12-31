@@ -11,18 +11,22 @@ const BASE_URL = "https://palmapp.onrender.com/api/v1/";
 
 const initialState = {
   currentReport: {},
+  reports: [],
 };
 
 const reportsSlice = createSlice({
   name: "report",
   initialState,
   reducers: {
+    setReports: (state, { payload }) => {
+      return { ...state, reports: payload };
+    },
     setCurrentReport: (state, { payload }) => {
       return { ...state, currentReport: payload };
     },
   },
 });
 
-export default reportsSlice.reducer;
+export const { setCurrentReport, setReports } = reportsSlice.actions;
 
-export const { setCurrentReport } = reportsSlice.actions;
+export default reportsSlice.reducer;

@@ -4,8 +4,8 @@ const createManualWeedings = () => {
   db.transaction((tx) => {
     tx.executeSql(
       `CREATE TABLE IF NOT EXISTS
-        manual_weedings ( report_id INTEGER REFERENCES reports(report_id),
-        worker_matricule INTEGER REFERENCES workers(matricule),
+        manual_weedings ( report_id VARCHAR,
+        worker_matricule INTEGER,
         trees INTEGER,
         acres FLOAT,
         UNIQUE (report_id, worker_matricule)

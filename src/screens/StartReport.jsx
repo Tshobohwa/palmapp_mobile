@@ -76,7 +76,7 @@ const StartReport = ({ navigation }) => {
       dispatch(setCurrentReport(report));
     };
     const newReport = {
-      report_id: +`${user.id}${Date.now()}`,
+      report_id: `${user.id}${Date.now()}`,
       supervisor_id: user.id,
       operation_id: user.operation_id,
       date: date,

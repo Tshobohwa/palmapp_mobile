@@ -33,15 +33,15 @@ const WeedingModal = ({ opened, closeModal, weeder }) => {
       dispatch(setWeedings(newWeedings));
       closeModal();
     };
-    saveWeeding(
-      {
+    saveWeeding({
+      weeding: {
         report_id,
         trees,
         acres,
         worker_matricule: weeder.matricule,
       },
-      updateWeedings
-    );
+      updateWeedings,
+    });
   };
 
   useEffect(() => {
