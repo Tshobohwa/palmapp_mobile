@@ -19,7 +19,7 @@ const SharedListItem = ({ item, openModal, data }) => {
           <Text>Acres: {data?.acres || 0}</Text>
         </View>
         <View>
-          <Text>man day: {data?.trees / man_day || 0}</Text>
+          <Text>man day: {(data?.trees / man_day).toFixed(2) || 0}</Text>
         </View>
       </View>
     </TouchableOpacity>

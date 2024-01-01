@@ -5,6 +5,7 @@ import createPlots from "./migrate/04createPlots";
 import createReports from "./migrate/05createReports";
 import createWorkers from "./migrate/06createWorkers";
 import createHaverts from "./migrate/07createHaverts";
+import createWeedings from "./migrate/11createWeedings";
 import createManualWeedings from "./migrate/08createManualWeedings";
 import createFertilizations from "./migrate/09createFertilizations";
 import createPrunings from "./migrate/10createPruning";
@@ -23,6 +24,8 @@ const createDataBaseSchema = () => {
   createWorkers();
 
   createHaverts();
+
+  createWeedings();
 
   createManualWeedings();
 

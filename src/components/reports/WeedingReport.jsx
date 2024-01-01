@@ -4,6 +4,7 @@ import { FlatList } from "react-native";
 import WeedingComponent from "../reportComponents/WeedingComponent";
 import { useDispatch, useSelector } from "react-redux";
 import { setWeedings } from "../../redux/weedings/weedingsSlice";
+import SearchBar from "../shared/SearchBar";
 
 const WeedingReport = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,16 @@ const WeedingReport = () => {
   const { report_id } = useSelector((store) => store.reports.currentReport);
 
   const [items, setItems] = useState([]);
+
+  const searchWorker = (text) => {
+    setItems(
+      workers.filter((worker) =>
+        `${worker.first_name} ${worker.last_name} ${worker.matricule}`
+          .toLowerCase()
+          .includes(text.toLowerCase())
+      )
+    );
+  };
 
   const initializeReport = () => {
     console.log(workers, weedings, report_id);
@@ -24,8 +35,8 @@ const WeedingReport = () => {
       const weeding = {
         report_id,
         worker_matricule: worker.matricule,
-        trees: 5,
-        acres: 2,
+        trees: 0,
+        acres: 0,
       };
       newWeedings.push(weeding);
     });
@@ -42,6 +53,8 @@ const WeedingReport = () => {
 
   return (
     <>
+      <SearchBar placeholder={"search worker"} onSearchHandler={searchWorker} />
+
       <FlatList
         data={items}
         renderItem={({ item }) => <WeedingComponent item={item} />}

@@ -28,10 +28,6 @@ const Report = ({ navigation }) => {
   return (
     <ScreenWrapper>
       <View className=" flex-1  bg-leaft-light relative pt-[60px]">
-        <SearchBar
-          placeholder={"search worker"}
-          // onSearchHandler={onSearchHandler}
-        />
         {(operation_id === 1 && (
           <HaverstingReport workers={filteredWorkers} navigation={navigation} />
         )) ||
