@@ -2,16 +2,16 @@ import React, { useEffect, useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import { TouchableOpacity, View, Text, Image, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { closeHaversterModal } from "../redux/haversts/haverstsSlice";
+import {
+  closeHaversterModal,
+  setHaversts,
+} from "../redux/haversts/haverstsSlice";
+import saveHaverst from "../db/insertQueries/saveHaverst";
 
 const HaversterModal = () => {
   const dispatch = useDispatch();
-  const { currentHaverster, currentHaverst, modalOpened } = useSelector(
-    (store) => store.haversts
-  );
-  const discardHandler = () => {
-    dispatch(closeHaversterModal());
-  };
+  const { currentHaverster, currentHaverst, modalOpened, haversts } =
+    useSelector((store) => store.haversts);
 
   const [ripeBunches, setRipeBunches] = useState(currentHaverst.ripe_bunches);
   const [unripeBuches, setUnripeBunches] = useState(
@@ -24,6 +24,29 @@ const HaversterModal = () => {
   const unripeBuchesChangeHandler = (text) => {
     setUnripeBunches(+text);
   };
+
+  const discardHandler = () => {
+    dispatch(closeHaversterModal());
+  };
+
+  const submitHandler = () => {
+    const upDateHaversts = (newHaverst) => {
+      const newHaversts = haversts.map((hav) => {
+        hav.worker_matricule === newHaverst.worker_matricule &&
+        hav.loading_zone === newHaverst.loading_zone
+          ? newHaverst
+          : haverst;
+      });
+      dispatch(setHaversts(newHaversts));
+    };
+    const haverst = {
+      ...currentHaverst,
+      ripe_bunches: ripeBunches,
+      unripe_bunches: unripeBuches,
+    };
+    saveHaverst(haverst, upDateHaversts, discardHandler);
+  };
+
   useEffect(() => {
     setRipeBunches(currentHaverst.ripe_bunches);
     setUnripeBunches(currentHaverst.unripe_bunches);
@@ -83,7 +106,10 @@ const HaversterModal = () => {
           >
             <Text className=" font-bold">discard</Text>
           </TouchableOpacity>
-          <TouchableOpacity className=" h-[50px] w-[45%] flex items-center justify-center bg-leaf-300 rounded-md">
+          <TouchableOpacity
+            className=" h-[50px] w-[45%] flex items-center justify-center bg-leaf-300 rounded-md"
+            onPress={submitHandler}
+          >
             <Text className=" text-white font-bold">submit</Text>
           </TouchableOpacity>
         </View>

@@ -13,7 +13,7 @@ import operations from "./src/data/operations";
 import { saveOperation } from "./src/db/insertQueries/saveOperations";
 
 export default function App() {
-  // dropTables();
+  dropTables();
   createDataBaseSchema();
   blocks.forEach((block) => saveBlock(block));
   plots.forEach((plot) => savePlot(plot));

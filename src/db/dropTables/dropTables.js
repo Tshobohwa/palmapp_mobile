@@ -27,7 +27,7 @@ export const dropTables = () => {
       () => console.log("Couldn't drop manual weedings table")
     );
     tx.executeSql(
-      "DROP TABLE IF EXISTS harvests",
+      "DROP TABLE IF EXISTS harversts",
       [],
       () => console.log("Harvests table dropped successfully"),
       () => console.log("Couldn't drop harvests table")

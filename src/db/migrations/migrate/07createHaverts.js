@@ -4,7 +4,7 @@ const createHaverts = () => {
   db.transaction((tx) => {
     tx.executeSql(
       `CREATE TABLE IF NOT EXISTS
-        haversts
+        harversts
       ( report_id VARCHAR,
         worker_matricule INTEGER,
         ripe_bunches INTEGER,
