@@ -10,8 +10,8 @@ const SharedListItem = ({ item, openModal, data }) => {
       onPress={openModal}
     >
       <View className=" w-full my-2">
-        <Text className="font-bold">{`${item.first_name} ${item.last_name}`}</Text>
-        <Text className="font-bold text-leaf-300">{item.matricule}</Text>
+        <Text className="font-bold">{`${item?.first_name} ${item?.last_name}`}</Text>
+        <Text className="font-bold text-leaf-300">{item?.matricule}</Text>
       </View>
       <View className=" flex-row w-full border-t justify-between border-leaf-50 py-2">
         <View>

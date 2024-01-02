@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FlatList } from "react-native";
-import items from "./_items";
 import ManualWeedingComponent from "../reportComponents/ManualWeedingComponent";
-import ManualWeederModal from "../../Modals/ManualWeederModal";
 import { useDispatch, useSelector } from "react-redux";
 import { setManualWeedings } from "../../redux/manualWeedings/manualWeedingsSlice";
 import SearchBar from "../shared/SearchBar";
