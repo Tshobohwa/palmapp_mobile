@@ -5,8 +5,10 @@ import { setCurrentHaverster } from "../../redux/haversts/haverstsSlice";
 
 const HaverstingListItem = ({ item, navigation }) => {
   const dispatch = useDispatch();
+
   const { haversts } = useSelector((store) => store.haversts);
   const { currentReport } = useSelector((store) => store.reports);
+
   const [ripesBunches, setRipeBunches] = useState(0);
   const [greenBunches, setGreenBunches] = useState(0);
   const [manDay, setManDay] = useState(0);

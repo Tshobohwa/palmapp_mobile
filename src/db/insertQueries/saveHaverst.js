@@ -1,6 +1,6 @@
 import { db } from "../sqlite";
 
-const saveHaverst = (haverst, closeModal, updateHaversts) => {
+const saveHaverst = (haverst, updateHaversts) => {
   const values = [
     haverst.report_id,
     haverst.worker_matricule,
@@ -14,9 +14,8 @@ const saveHaverst = (haverst, closeModal, updateHaversts) => {
         VALUES ( ?, ?, ?, ?, ?)`,
       values,
       () => {
-        console.log("Haverst successfully saved");
+        console.log("Haverst successfully saved", haverst);
         updateHaversts(haverst);
-        closeModal();
       },
       (error) => {
         console.log("couldn't save haverst", values);

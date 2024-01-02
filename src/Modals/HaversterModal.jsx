@@ -27,20 +27,21 @@ const HaversterModal = ({ currentHaverst, closeModal, modalOpened }) => {
 
   const submitHandler = () => {
     const updateHaversts = (newHaverst) => {
-      const newHaversts = haversts.map((hav) => {
-        hav.worker_matricule === newHaverst.worker_matricule &&
-        hav.loading_zone === newHaverst.loading_zone
-          ? hav
-          : hav;
-      });
+      const newHaversts = haversts.map((haver) =>
+        haver.worker_matricule === newHaverst.worker_matricule &&
+        haver.loading_zone === newHaverst.loading_zone
+          ? newHaverst
+          : haver
+      );
       dispatch(setHaversts(newHaversts));
+      closeModal();
     };
     const haverst = {
       ...currentHaverst,
       ripe_bunches: ripeBunches,
       unripe_bunches: unripeBuches,
     };
-    saveHaverst(haverst, updateHaversts, discardHandler);
+    saveHaverst(haverst, updateHaversts);
   };
 
   useEffect(() => {

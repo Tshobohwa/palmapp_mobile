@@ -1,10 +1,5 @@
 import React, { useState } from "react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  openHaversterModal,
-  setCurrentHaverst,
-} from "../../redux/haversts/haverstsSlice";
 import HaversterModal from "../../Modals/HaversterModal";
 
 const HaversterTableRow = ({ haverst, i }) => {
