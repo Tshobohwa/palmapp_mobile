@@ -37,7 +37,6 @@ const HaverstingListItem = ({ item, navigation }) => {
         0
       )
     );
-    console.log(workerHaversts);
   }, [workerHaversts]);
 
   useEffect(() => {

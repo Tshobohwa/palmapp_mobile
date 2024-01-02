@@ -1,6 +1,6 @@
 import { db } from "../sqlite";
 
-const saveHaverst = (haverst, updateHaversts, closeModal) => {
+const saveHaverst = (haverst, closeModal, updateHaversts) => {
   const values = [
     haverst.report_id,
     haverst.worker_matricule,

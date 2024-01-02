@@ -2,16 +2,12 @@ import React, { useEffect, useState } from "react";
 import ModalWrapper from "./ModalWrapper";
 import { TouchableOpacity, View, Text, Image, TextInput } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  closeHaversterModal,
-  setHaversts,
-} from "../redux/haversts/haverstsSlice";
+import { setHaversts } from "../redux/haversts/haverstsSlice";
 import saveHaverst from "../db/insertQueries/saveHaverst";
 
-const HaversterModal = () => {
+const HaversterModal = ({ currentHaverst, closeModal, modalOpened }) => {
   const dispatch = useDispatch();
-  const { currentHaverster, currentHaverst, modalOpened, haversts } =
-    useSelector((store) => store.haversts);
+  const { currentHaverster, haversts } = useSelector((store) => store.haversts);
 
   const [ripeBunches, setRipeBunches] = useState(currentHaverst.ripe_bunches);
   const [unripeBuches, setUnripeBunches] = useState(
@@ -26,16 +22,16 @@ const HaversterModal = () => {
   };
 
   const discardHandler = () => {
-    dispatch(closeHaversterModal());
+    closeModal();
   };
 
   const submitHandler = () => {
-    const upDateHaversts = (newHaverst) => {
+    const updateHaversts = (newHaverst) => {
       const newHaversts = haversts.map((hav) => {
         hav.worker_matricule === newHaverst.worker_matricule &&
         hav.loading_zone === newHaverst.loading_zone
-          ? newHaverst
-          : haverst;
+          ? hav
+          : hav;
       });
       dispatch(setHaversts(newHaversts));
     };
@@ -44,7 +40,7 @@ const HaversterModal = () => {
       ripe_bunches: ripeBunches,
       unripe_bunches: unripeBuches,
     };
-    saveHaverst(haverst, upDateHaversts, discardHandler);
+    saveHaverst(haverst, updateHaversts, discardHandler);
   };
 
   useEffect(() => {

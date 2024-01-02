@@ -1,11 +1,9 @@
 import { FlatList } from "react-native";
-import HaversterModal from "../../Modals/HaversterModal";
 import HaverstingListItem from "../ListItems/HaverstingListItem";
 import { useDispatch, useSelector } from "react-redux";
-import selectHaversts from "../../db/selectQueries/selectHaversts";
 import { useEffect, useState } from "react";
 import { setHaversts } from "../../redux/haversts/haverstsSlice";
-import saveHaverst from "../../db/insertQueries/saveHaverst";
+import SearchBar from "../shared/SearchBar";
 
 const HaverstingReport = ({ workers, navigation }) => {
   const dispatch = useDispatch();
@@ -14,33 +12,35 @@ const HaverstingReport = ({ workers, navigation }) => {
   const [items, setItems] = useState(workers);
 
   const initializeReport = () => {
-    const haversts = [];
+    if (haversts[0]) return;
+    const newHaversts = [];
     workers.forEach((worker) => {
       for (let i = 1; i <= 14; i++) {
-        haversts.push({
+        newHaversts.push({
           report_id: report_id,
           worker_matricule: worker.matricule,
-          ripe_bunches: 5,
-          unripe_bunches: 9,
+          ripe_bunches: 0,
+          unripe_bunches: 0,
           loading_zone: i,
         });
       }
     });
-    dispatch(setHaversts(haversts));
+    dispatch(setHaversts(newHaversts));
+  };
+
+  const searchWorker = (text) => {
+    setItems(
+      workers.filter((worker) =>
+        `${worker.first_name} ${worker.last_name} ${worker.matricule}`
+          .toLowerCase()
+          .includes(text.toLowerCase())
+      )
+    );
   };
 
   useEffect(() => {
-    if (!workers[0] || haversts[0]) return;
     initializeReport();
-  }, [workers, haversts]);
-
-  const updateHaversts = (haversts) => {
-    dispatch(setHaversts(haversts));
-  };
-
-  useEffect(() => {
-    selectHaversts(report_id, updateHaversts);
-  }, [report_id]);
+  }, []);
 
   useEffect(() => {
     setItems(workers);
@@ -48,7 +48,7 @@ const HaverstingReport = ({ workers, navigation }) => {
 
   return (
     <>
-      <HaversterModal />
+      <SearchBar onSearchHandler={searchWorker} placeholder="search worker" />
       <FlatList
         data={items}
         renderItem={({ item }) => (
