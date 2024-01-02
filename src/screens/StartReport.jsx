@@ -14,10 +14,6 @@ import formatDateToEnglish from "../helpers/formatDateToEnglish";
 import { useDispatch, useSelector } from "react-redux";
 import saveReport from "../db/insertQueries/saveReport";
 import { setCurrentReport } from "../redux/reports/reportsSlice";
-import selectBlocks from "../db/selectQueries/selectBlocks";
-import { setBlocks } from "../redux/blocks/blocksSlice";
-import { setPlots } from "../redux/plots/plotsSlice";
-import selectPlots from "../db/selectQueries/selectPlots";
 
 const StartReport = ({ navigation }) => {
   const dispatch = useDispatch();
@@ -121,8 +117,8 @@ const StartReport = ({ navigation }) => {
           source={require("../assets/images/palmplantation.jpg")}
           className=" flex-1 items-center justify-center"
         >
-          <SafeAreaView className="p-3 m-4 rounded-xl justify-center bg-white">
-            <View className=" mb-5 w-full flex-row justify-between">
+          <SafeAreaView className=" p-3 m-4 rounded-xl justify-center bg-white">
+            <View className=" mx-2 mb-5 w-full flex-row justify-between">
               <Text className=" font-bold text-lg text-leaf-300 w-[50%]">
                 New report
               </Text>
@@ -130,7 +126,7 @@ const StartReport = ({ navigation }) => {
                 <Text>{formatDateToEnglish(date)}</Text>
               </View>
             </View>
-            <View className="flex-row items-center my-2">
+            <View className="flex-row items-center my-2  mx-2">
               <Text className="w-[25%]">man day: </Text>
               <TextInput
                 className=" placeholder:text-black bg-leaf-50 h-[50px] rounded-lg w-[75%] text-center"
@@ -139,7 +135,7 @@ const StartReport = ({ navigation }) => {
                 onChangeText={manDayChangeHandler}
               />
             </View>
-            <View className="flex-row items-center my-2">
+            <View className="flex-row items-center my-2 mx-2">
               <Text className=" w-[25%]">penality: </Text>
               <TextInput
                 className=" placeholder:text-black bg-leaf-50 h-[50px] rounded-lg w-[75%] text-center"
@@ -148,7 +144,7 @@ const StartReport = ({ navigation }) => {
                 onChangeText={penalityChangeHandler}
               />
             </View>
-            <View className="flex-row items-center my-2">
+            <View className="flex-row items-center my-2 mx-2">
               <Text className=" w-[25%]">block: </Text>
               <TouchableOpacity
                 className="flex flex-row items-center w-[75%] bg-leaf-50 h-[50px] rounded-lg justify-between px-3"
@@ -161,7 +157,7 @@ const StartReport = ({ navigation }) => {
                 />
               </TouchableOpacity>
             </View>
-            <View className="flex-row justify-between my-4">
+            <View className="flex-row justify-between items-center my-4 mx-2">
               <Text>plot: </Text>
               <TouchableOpacity
                 className="flex flex-row items-center w-[75%] bg-leaf-50 h-[50px] rounded-lg justify-between px-3"
@@ -174,7 +170,7 @@ const StartReport = ({ navigation }) => {
                 />
               </TouchableOpacity>
             </View>
-            <View className="w-full flex-row justify-between">
+            <View className="w-full flex-row justify-between  mx-2 mb-3">
               <TouchableOpacity
                 className=" w-[49%] h-[50px] items-center justify-center rounded-md border border-leaf-300"
                 onPress={discardHandler}

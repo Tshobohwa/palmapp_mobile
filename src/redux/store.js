@@ -6,6 +6,7 @@ import plotsReducer from "./plots/plotsSlice";
 import reportsReducer from "./reports/reportsSlice";
 import haverstsReducer from "./haversts/haverstsSlice";
 import weedingsSlice from "./weedings/weedingsSlice";
+import manualWeedingsReducer from "./manualWeedings/manualWeedingsSlice";
 
 const store = configureStore({
   reducer: {
@@ -16,6 +17,7 @@ const store = configureStore({
     reports: reportsReducer,
     haversts: haverstsReducer,
     weedings: weedingsSlice,
+    manualWeedings: manualWeedingsReducer,
   },
 });
 
