@@ -65,7 +65,7 @@ const StartReport = ({ navigation }) => {
 
   const startHandler = () => {
     const gotoReportPage = () => {
-      navigation.navigate("New Report");
+      navigation.replace("New Report");
     };
 
     const setReport = (report) => {
