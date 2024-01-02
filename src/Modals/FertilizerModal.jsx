@@ -18,7 +18,7 @@ const FertilizerModal = ({ modalOpened, closeModal, fertilization }) => {
   useEffect(() => {
     setWorker(
       workers.find(
-        (worker) => worker.matricule === fertilization.worker_matricule
+        (worker) => worker.matricule === fertilization?.worker_matricule
       )
     );
   }, [workers, fertilization]);

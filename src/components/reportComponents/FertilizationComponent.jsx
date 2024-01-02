@@ -21,7 +21,7 @@ const FertilizationComponent = ({ item }) => {
   useEffect(() => {
     setFertilization(
       fertilizations.find(
-        (fertilization) => fertilization.worker_matricule === item.matricule
+        (fertilization) => fertilization?.worker_matricule === item.matricule
       )
     );
   }, [fertilizations]);
