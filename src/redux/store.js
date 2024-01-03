@@ -8,6 +8,7 @@ import haverstsReducer from "./haversts/haverstsSlice";
 import weedingsSlice from "./weedings/weedingsSlice";
 import manualWeedingsReducer from "./manualWeedings/manualWeedingsSlice";
 import fertilizationsReducer from "./fertilizations/fertilizationsSlice";
+import pruningsReducer from "./prunings/PruningsSlice";
 
 const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ const store = configureStore({
     weedings: weedingsSlice,
     manualWeedings: manualWeedingsReducer,
     fertilizations: fertilizationsReducer,
+    prunings: pruningsReducer,
   },
 });
 
