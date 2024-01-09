@@ -1,6 +1,6 @@
 import { Text, View, TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
-import { db } from "../database/migrations";
+import { db } from "../db/sqlite";
 import { setNewReport } from "../redux/reports/reportsSlice";
 
 const ConfirmNewForm = ({ navigation }) => {
@@ -28,7 +28,7 @@ const ConfirmNewForm = ({ navigation }) => {
         newReport,
         (result) => {
           console.log(`report ${currentReport.date} saved succesfully`);
-          navigation.navigate(currentReport.operation.name.toLowerCase());
+          navigation.navigate(currentReport.operation?.name.toLowerCase());
         },
         (error) => {
           console.log(`An error occured, couldn't save report `, newReport);

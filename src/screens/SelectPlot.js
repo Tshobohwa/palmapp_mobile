@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import SearchBar from "../components/shared/SearchBar";
 import NoItemMessage from "../components/shared/NoItemMessage";
-import { db } from "../database/migrations";
 import { useSelector } from "react-redux";
 import PlotsList from "../components/lists/PlotsList";
 import Loading from "../components/shared/Loading";
+import { db } from "../db/sqlite";
 
 const SelectPlot = ({ navigation }) => {
   const { currentReport } = useSelector((store) => store.reports);

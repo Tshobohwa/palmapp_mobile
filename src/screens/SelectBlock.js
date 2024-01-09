@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text } from "react-native";
 import SearchBar from "../components/shared/SearchBar";
 import NoItemMessage from "../components/shared/NoItemMessage";
-import { db } from "../database/migrations";
+import { db } from "../db/sqlite";
 import BlocksList from "../components/lists/BlocksList";
 import Loading from "../components/shared/Loading";
 

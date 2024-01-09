@@ -12,7 +12,7 @@ const createWeedings = () => {
         )`,
       [],
       (result) => {
-        console.log("Manual weedings table created successfully");
+        console.log("Weedings table created successfully");
       },
       (error) => {
         console.log("Couldn't create manual weeding table", error);
