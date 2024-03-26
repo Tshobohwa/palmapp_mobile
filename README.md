@@ -33,10 +33,9 @@ To install this application on your local computer you need to run the following
 - `code .` (to open in Visual Studio, it is optional) 
 - `npm install`
 
-
 ## Run
 
-After installation, to run this app you will proceed as follow:
+After installation, to run this app you will proceed as follows:
 
 - First run one of the following commands from the root folder of the app `./palmapp_mobile` (depending on the mobile phone you are going to use on the next step)
  - `npm run android`
@@ -44,7 +43,5 @@ After installation, to run this app you will proceed as follow:
 
 - Make sure your computer and mobile device are connected to the same WIFI.
 
-- Then scan the QR code from the command line with your mobile device (in expo go if you are using Android or in camera if you are using iPhone)
-
-
+- Then scan the QR code from the command line with your mobile device to launch the application in it. (in Expo go if you are using Android or in camera if you are using iPhone)
 
