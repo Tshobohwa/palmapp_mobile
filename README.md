@@ -1,7 +1,6 @@
 # palmapp_mobile
 
-palmapp is a mobile application that helps the user to manage and supervise the activity made in a palm field, those activities include
-
+PalmApp is a mobile application that helps users manage and supervise activities conducted in a palm field. These activities include:
 - Harvesting
 - Weeding
 - Manual weeding
